@@ -1,26 +1,119 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Pretendard Variable 로컬 폰트 */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Pretendard-1.3.9/web/variable/woff2/PretendardVariable.woff2")
+    format("woff2-variations");
 }
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-pretendard);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* 동막골 브랜드 색상 */
+  --color-brand-earth: #8b4513;
+  --color-brand-warm: #c4692a;
+  --color-brand-light: #e8956d;
+  --color-brand-cream: #fff8f0;
+  --color-brand-cream-dark: #f5e6d3;
+  --color-brand-charcoal: #2c2416;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+  --font-pretendard:
+    "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+
+  /* 동막골 테마 — shadcn 오버라이드 */
+  --background: oklch(0.99 0.008 60); /* 따뜻한 크림 */
+  --foreground: oklch(0.18 0.02 50); /* 진한 차콜 */
+  --card: oklch(0.98 0.006 60);
+  --card-foreground: oklch(0.18 0.02 50);
+  --popover: oklch(0.98 0.006 60);
+  --popover-foreground: oklch(0.18 0.02 50);
+  --primary: oklch(0.42 0.1 42); /* 흙갈색 */
+  --primary-foreground: oklch(0.99 0.005 60);
+  --secondary: oklch(0.93 0.02 55); /* 연한 크림 */
+  --secondary-foreground: oklch(0.35 0.07 45);
+  --muted: oklch(0.94 0.015 58);
+  --muted-foreground: oklch(0.52 0.04 50);
+  --accent: oklch(0.88 0.04 55);
+  --accent-foreground: oklch(0.35 0.07 45);
+  --destructive: oklch(0.55 0.22 27);
+  --border: oklch(0.88 0.02 55);
+  --input: oklch(0.9 0.02 55);
+  --ring: oklch(0.55 0.1 42);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-pretendard);
+    font-feature-settings: "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── 유틸리티 ─────────────────────────────────── */
+@layer utilities {
+  .section-padding {
+    @apply px-4 md:px-8 lg:px-16 xl:px-24;
+  }
+
+  .section-y {
+    @apply py-20 md:py-28;
+  }
+
+  .brand-gradient {
+    background: linear-gradient(135deg, #8b4513 0%, #c4692a 50%, #e8956d 100%);
+  }
+
+  .brand-gradient-text {
+    background: linear-gradient(135deg, #8b4513, #c4692a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: rgba(255, 248, 240, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(196, 105, 42, 0.15);
+  }
 }
