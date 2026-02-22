@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "구수하고 진한 청국장이 일품인 부산 대연동 동막골청국장. 정성스러운 집밥 한 상 차려드립니다.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/image/hero.jpeg",
         width: 1200,
         height: 630,
         alt: "동막골청국장 대표 이미지",
